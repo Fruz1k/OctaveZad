@@ -25,7 +25,25 @@ disp(X);
   disp(Y);
   A=inv(X)*Y;
   disp("Macierz A - współczynników");
-  disp(A);
+
+  A_zer=zeros(stopien+1,1);
+ for i=1:stopien+1
+    A_zer(stopien+1-i+1)=A(i);
+ endfor
+ A=A_zer;
+ disp(A);
+%A=polyfit(x, y, stopien);
+%disp(A)
+yi=zeros(1,n);
+for i=1:n
+for j=1:stopien+1
+  yi(1,i)=yi(1,i) + A(j,1)*x(1,i)^(stopien+1-j);
+ end
+ end
+ plot(x,y,'rx');
+ grid on;
+ hold on;
+ plot(x, yi);
 else
  disp("Za duzy stopien wielomianu aproksymujacego");
 end
